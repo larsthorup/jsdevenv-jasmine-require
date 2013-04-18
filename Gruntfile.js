@@ -37,6 +37,18 @@ module.exports = function (grunt) {
     };
     grunt.registerTask('lint', 'jshint');
 
+    // serve
+    grunt.registerTask('wait', 'keep running until terminated', function () {
+        /* var done =*/
+        this.async();
+    });
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    gruntConfig.connect = {};
+    gruntConfig.connect.all = {
+        options: {
+            port: 8009
+        }
+    };
 
     // test
     grunt.loadNpmTasks('grunt-contrib-jasmine');
@@ -46,14 +58,21 @@ module.exports = function (grunt) {
                 'src/js/**/*.js'
             ],
             options: {
-                specs: 'src/js/**/*.test.js',
+                specs: 'src/test/**/*.test.js',
+                host: 'http://127.0.0.1:8009/',
+                template: require('grunt-template-jasmine-requirejs'),
+                templateOptions: {
+                    requireConfig: {
+                        baseUrl: 'src/js'
+                    }
+                },
                 junit: {
                     path: 'output/testresults'
                 }
             }
         }
     };
-    grunt.registerTask('test', 'jasmine:src');
+    grunt.registerTask('test', ['connect:all', 'jasmine:src']);
 
     // watch
     grunt.loadNpmTasks('grunt-contrib-watch');

@@ -1,8 +1,8 @@
 /*global window*/
-(function (window) {
+define(function () {
     'use strict';
 
-    window.passwordEvaluator = {
+    var passwordEvaluator = {
         strength: function (password) {
             var result = 0, digitCount, alphaCount, specialCount, categoryCount, lowerCount, upperCount;
             if (password.length > 4) {
@@ -32,4 +32,5 @@
             return result;
         }
     };
-})(window);
+    return passwordEvaluator;
+});

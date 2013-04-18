@@ -1,4 +1,4 @@
-/*global Math describe beforeEach spyOn it expect */
+/*global define Math describe beforeEach spyOn it expect */
 define(['util/random'], function () {
     'use strict';
 

@@ -30,7 +30,9 @@ module.exports = function (grunt) {
             maxparams: 3, maxdepth: 2, maxstatements: 50},
         all: [
             'Gruntfile.js',
-            'src/js/**/*.js'
+            'src/**/*.js',
+            '!src/lib/**/*.js',
+            '!src/test/lib/**/*.js'
         ]
     };
     grunt.registerTask('lint', 'jshint');
@@ -41,8 +43,7 @@ module.exports = function (grunt) {
     gruntConfig.jasmine = {
         src: {
             src: [
-                'src/js/**/*.js',
-                '!src/js/**/*.test.js'
+                'src/js/**/*.js'
             ],
             options: {
                 specs: 'src/js/**/*.test.js',

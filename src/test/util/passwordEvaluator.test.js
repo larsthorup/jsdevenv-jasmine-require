@@ -1,4 +1,4 @@
-/*global window describe it expect */
+/*global define describe it expect */
 define(['util/passwordEvaluator'], function (pw) {
     'use strict';
 

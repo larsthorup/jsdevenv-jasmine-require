@@ -1,4 +1,4 @@
-/*global window*/
+/*global define*/
 define(function () {
     'use strict';
 

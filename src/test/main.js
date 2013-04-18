@@ -6,6 +6,7 @@ require([
     '../test/util/random.test.js',
     '../test/util/passwordEvaluator.test.js'
 ], function (jasmine) {
+    'use strict';
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.addReporter(new jasmine.HtmlReporter());
     jasmineEnv.execute();

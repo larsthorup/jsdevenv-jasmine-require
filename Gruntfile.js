@@ -61,7 +61,7 @@ module.exports = function (grunt) {
             ],
             options: {
                 specs: 'src/test/**/*.test.js',
-                host: 'http://127.0.0.1:8009/',
+                // host: 'http://127.0.0.1:8009/',
                 template: require('grunt-template-jasmine-requirejs'),
                 templateOptions: {
                     requireConfig: {
@@ -77,6 +77,32 @@ module.exports = function (grunt) {
     };
     grunt.registerTask('test', ['connect:all', 'jasmine:src']);
 
+    // coverage
+    gruntConfig.jasmine.istanbul = {
+        src: gruntConfig.jasmine.src.src,
+        options: {
+            specs: gruntConfig.jasmine.src.options.specs,
+            host: gruntConfig.jasmine.src.options.host,
+            template: require('grunt-template-jasmine-istanbul'),
+            templateOptions: {
+                coverage: 'output/coverage/coverage.json',
+                report: [
+                    {type: 'html', options: {dir: 'output/coverage'}},
+                    {type: 'cobertura', options: {dir: 'output/coverage/cobertura'}},
+                    {type: 'text-summary'}
+                ],
+                template: gruntConfig.jasmine.src.options.template,
+                templateOptions: {
+                    requireConfig: {
+                        baseUrl: './src/js/',
+                        mainConfigFile: 'src/test/requireConfig.js'
+                    }
+                }
+            }
+        }
+    };
+    grunt.registerTask('coverage', 'jasmine:istanbul');
+
     // watch
     grunt.loadNpmTasks('grunt-contrib-watch');
     gruntConfig.watch = {
@@ -86,38 +112,6 @@ module.exports = function (grunt) {
         }
     };
 
-
-    // coverage
-    gruntConfig.jasmine.istanbulHtml = {
-        src: gruntConfig.jasmine.src.src,
-        options: {
-            specs: gruntConfig.jasmine.src.options.specs,
-            template: require('grunt-template-jasmine-istanbul'),
-            templateOptions: {
-                coverage: 'output/coverage/coverage.json',
-                report: 'output/coverage'
-            }
-        }
-    };
-    grunt.registerTask('coverage:html', 'jasmine:istanbulHtml');
-    gruntConfig.jasmine.istanbulCobertura = {
-        src: gruntConfig.jasmine.istanbulHtml.src,
-        options: {
-            specs: gruntConfig.jasmine.istanbulHtml.options.specs,
-            template: gruntConfig.jasmine.istanbulHtml.options.template,
-            templateOptions: {
-                coverage: gruntConfig.jasmine.istanbulHtml.options.template,
-                report: {
-                    type: 'cobertura',
-                    options: {
-                        dir: 'output/coverage/cobertura'
-                    }
-                }
-            }
-        }
-    };
-    grunt.registerTask('coverage:cobertura', 'jasmine:istanbulCobertura');
-    grunt.registerTask('coverage', ['coverage:html', 'coverage:cobertura']);
 
     // grunt
     grunt.initConfig(gruntConfig);

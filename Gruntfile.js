@@ -82,7 +82,7 @@ module.exports = function (grunt) {
         src: gruntConfig.jasmine.src.src,
         options: {
             specs: gruntConfig.jasmine.src.options.specs,
-            host: gruntConfig.jasmine.src.options.host,
+            // host: gruntConfig.jasmine.src.options.host,
             template: require('grunt-template-jasmine-istanbul'),
             templateOptions: {
                 coverage: 'output/coverage/coverage.json',
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
                 template: gruntConfig.jasmine.src.options.template,
                 templateOptions: {
                     requireConfig: {
-                        baseUrl: './src/js/',
+                        baseUrl: '.grunt/grunt-contrib-jasmine/src/js/',
                         mainConfigFile: 'src/test/requireConfig.js'
                     }
                 }

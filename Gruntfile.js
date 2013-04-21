@@ -55,7 +55,9 @@ module.exports = function (grunt) {
     gruntConfig.jasmine = {
         src: {
             src: [
-                'src/js/**/*.js'
+                'src/js/**/*.js',
+                '!src/js/main.js',
+                '!src/js/requireConfig.js'
             ],
             options: {
                 specs: 'src/test/**/*.test.js',
@@ -63,7 +65,8 @@ module.exports = function (grunt) {
                 template: require('grunt-template-jasmine-requirejs'),
                 templateOptions: {
                     requireConfig: {
-                        baseUrl: 'src/js'
+                        baseUrl: './src/js/',
+                        mainConfigFile: 'src/test/requireConfig.js'
                     }
                 },
                 junit: {

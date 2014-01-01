@@ -4,7 +4,8 @@ require([
     'jasmine',
     'jasmine-html',
     '../test/util/random.test.js',
-    '../test/util/passwordEvaluator.test.js'
+    '../test/util/passwordEvaluator.test.js',
+    '../test/controller.test.js'
 ], function (jasmine) {
     'use strict';
     var jasmineEnv = jasmine.getEnv();

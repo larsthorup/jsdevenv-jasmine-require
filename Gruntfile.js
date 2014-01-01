@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     };
 
     // convenience
-    grunt.registerTask('default', ['lint', 'test']);
+    grunt.registerTask('default', ['lint', 'coverage']);
     grunt.registerTask('all', ['clean', 'lint', 'test', 'coverage']);
 
     // continuous integration
